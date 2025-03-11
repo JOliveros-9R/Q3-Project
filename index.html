@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Train Fare</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="
+    sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <!-- Nav Bar - Oliveros -->
+    <header class="d-flex align-items-center p-3">
+        <img src="https://static.vecteezy.com/system/resources/previews/000/523/845/original/train-railway-icon-isolated-on-white-background-vector.jpg" div class="logo rounded-circle" width="100"></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Schedule.html">Schedule</a>
+            <a href="Contact.html">Contact</a>
+            <a href="Help.html">Help</a>
+            <!-- Search Bar - Reyes -->
+            <input type="text" placeholder="Search">
+            <button class="btn btn-danger">Search</button>                                                       
+        </nav>
+    </header>
+
+<!-- form for station selector - Oliveros -->
+ <div class="container">
+        <h2>Train Fare Guide: MRT Line 3</h2>
+    </div>
+    <br>
+    <div class="container mb-5" id="fare-guide">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <h2>LEAVING FROM:</h2>
+            <select class="form-select" id="from">
+                <option selected disabled>Select a station...</option>
+                <option value="North Avenue">North Avenue</option>
+                <option value="Quezon Avenue">Quezon Avenue</option>
+                <option value="Kamuning">Kamuning</option>
+                <option value="Araneta Center-Cubao">Araneta Center-Cubao</option>
+                <option value="Santolan-Annapolis">Santolan-Annapolis</option>
+                <option value="Ortigas">Ortigas</option>
+                <option value="Shaw Boulevard">Shaw Boulevard</option>
+                <option value="Boni">Boni</option>
+                <option value="Guadalupe">Guadalupe</option>
+                <option value="Buendia">Buendia</option>
+                <option value="Ayala">Ayala</option>
+                <option value="Magallanes">Magallanes</option>
+                <option value="Taft Avenue">Taft Avenue</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <h2>GOING TO:</h2>
+            <select class="form-select" id="to">
+                <option selected disabled>Select a station...</option>
+                <option value="North Avenue">North Avenue</option>
+                <option value="Quezon Avenue">Quezon Avenue</option>
+                <option value="Kamuning">Kamuning</option>
+                <option value="Araneta Center-Cubao">Araneta Center-Cubao</option>
+                <option value="Santolan-Annapolis">Santolan-Annapolis</option>
+                <option value="Ortigas">Ortigas</option>
+                <option value="Shaw Boulevard">Shaw Boulevard</option>
+                <option value="Boni">Boni</option>
+                <option value="Guadalupe">Guadalupe</option>
+                <option value="Buendia">Buendia</option>
+                <option value="Ayala">Ayala</option>
+                <option value="Magallanes">Magallanes</option>
+                <option value="Taft Avenue">Taft Avenue</option>
+                </select>
+            </div>
+        </div>
+<br>
+
+
+ <br> 
+ <!-- Calculating The Price - Oliveros and Reyes -->
+<div class="text-center mt-4">
+        <h2 class="ticket text-danger fw-bold" id="price">Ticket Price: 0.00 PHP</h2>
+    </div>
+
+    <div class="text-center mt-3">
+        <h2 class="text-danger fw-bold">Ticket Types:</h2>
+        <button type="button" class="btn btn-warning text-dark fw-bold px-4 py-2 mb-2" onclick="regular()">Regular Rate</button>
+        <button type="button" class="btn btn-warning text-dark fw-bold px-4 py-2" onclick="discounted()">Discounted Rate</button>
+    </div>
+</div>
+
+<br><br>
+  </form>
+
+<script type="text/javascript">
+ // Regular Fare
+  function regular(){
+    let stationValues = {
+        "North Avenue": 5.4,
+        "Quezon Avenue": 4.3,
+        "Kamuning": 4.9,
+        "Araneta Center-Cubao": 5.1,
+        "Santolan-Annapolis": 4.2,
+        "Ortigas": 5.0,
+        "Shaw Boulevard": 5.6,
+        "Boni": 4.8,
+        "Guadalupe": 4.1,
+        "Buendia": 4.4,
+        "Ayala": 5.3,
+        "Magallanes": 3.7,
+        "Taft Avenue": 5.2,
+    };
+
+    var fromStation = document.getElementById("from").value;
+    var toStation = document.getElementById("to").value;
+
+    var baseFare = 13;
+    var perKmRate = 2;
+
+    let distance = Math.abs(stationValues[fromStation] - stationValues[toStation]);
+    let totalFare = baseFare + (distance * perKmRate);
+
+    document.getElementById("price").innerHTML = "TICKET PRICE: " + totalFare.toFixed(2) + " PHP";
+}
+
+// Discounted Fare
+ function discounted(){
+    let stationValues = {
+        "North Avenue": 5.4,
+        "Quezon Avenue": 4.3,
+        "Kamuning": 4.9,
+        "Araneta Center-Cubao": 5.1,
+        "Santolan-Annapolis": 4.2,
+        "Ortigas": 5.0,
+        "Shaw Boulevard": 5.6,
+        "Boni": 4.8,
+        "Guadalupe": 4.1,
+        "Buendia": 4.4,
+        "Ayala": 5.3,
+        "Magallanes": 3.7,
+        "Taft Avenue": 5.2,
+    };
+
+    var fromStation = document.getElementById("from").value;
+    var toStation = document.getElementById("to").value;
+
+    var baseFare = 13;
+    var perKmRate = 2;
+
+    let distance = Math.abs(stationValues[fromStation] - stationValues[toStation]);
+    let totalFare = baseFare + (distance * perKmRate);
+
+    let discountedFare = totalFare * 0.80;
+
+    document.getElementById("price").innerHTML = "TICKET PRICE (20% off): " + discountedFare.toFixed(2) + " PHP";
+}
+</script>
+
+
+
+
+      
+<div class="container d-flex justify-content-center my-4">
+    <div class="p-3 rounded shadow-lg" 
+        style="background-color: white; max-width: 800px; border: 5px solid #ddd;">
+        <img src="https://www.deiville.com/wp-content/uploads/2023/03/map-of-lrt-line-1-2-and-mrt-3-stations.jpg" 
+            class="img-fluid rounded" 
+            style="max-width: 100%; height: auto; display: block;" 
+            alt="MRT & LRT Station Map">
+    </div>
+</div>
+
+<footer>
+            <div class="footer" color="black">
+                <center><hr><p>&#169; AY 2025 | ICT 9 RUBY | Project | Joaquin Oliveros and David Reyes</p></center>
+            </div>
+            
+        </footer>
+
+</body>
+</html> 
